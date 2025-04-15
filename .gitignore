@@ -1,0 +1,15 @@
+# Jekyll 相关文件
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+vendor/
+
+# Ruby 相关文件
+.bundle/
+Gemfile.lock
+
+# 系统文件
+.DS_Store
+*.swp
+*~ 
