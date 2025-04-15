@@ -1,0 +1,18 @@
+current directory: /home/hayden/projects/haydencc.github.io/vendor/bundle/ruby/3.3.0/gems/erb-4.0.4/ext/erb/escape
+/usr/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /home/hayden/projects/haydencc.github.io/vendor/bundle/ruby/3.3.0/gems/erb-4.0.4/ext/erb/escape
+make DESTDIR\= sitearchdir\=./.gem.20250415-3612918-azo8d5 sitelibdir\=./.gem.20250415-3612918-azo8d5 clean
+
+current directory: /home/hayden/projects/haydencc.github.io/vendor/bundle/ruby/3.3.0/gems/erb-4.0.4/ext/erb/escape
+make DESTDIR\= sitearchdir\=./.gem.20250415-3612918-azo8d5 sitelibdir\=./.gem.20250415-3612918-azo8d5
+compiling escape.c
+linking shared-object erb/escape.so
+
+current directory: /home/hayden/projects/haydencc.github.io/vendor/bundle/ruby/3.3.0/gems/erb-4.0.4/ext/erb/escape
+make DESTDIR\= sitearchdir\=./.gem.20250415-3612918-azo8d5 sitelibdir\=./.gem.20250415-3612918-azo8d5 install
+/usr/bin/install -c -m 0755 escape.so ./.gem.20250415-3612918-azo8d5/erb
+
+current directory: /home/hayden/projects/haydencc.github.io/vendor/bundle/ruby/3.3.0/gems/erb-4.0.4/ext/erb/escape
+make DESTDIR\= sitearchdir\=./.gem.20250415-3612918-azo8d5 sitelibdir\=./.gem.20250415-3612918-azo8d5 clean

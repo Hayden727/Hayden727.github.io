@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>首页 - 洪晨辰</title>
+  <meta name="description" content="欢迎访问我的个人网站！这里记录了我的技术博客、学术成果和项目经验。">
+
+  <!-- 添加基本样式 -->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #fff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    a {
+      color: #153856;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <style>
+  .container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    gap: 2rem;
+  }
+
+  /* 左侧个人信息栏 */
+  .sidebar {
+    width: 300px;
+    background-color: #f8f9fa;
+    padding: 2rem;
+    border-radius: 10px;
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+  }
+
+  .profile {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    object-fit: cover;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .name {
+    color: #0d47a1;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .title {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .bio {
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .contact-link {
+    color: #0d47a1;
+    text-decoration: none;
+    padding: 0.5rem;
+    border: 1px solid #0d47a1;
+    border-radius: 5px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .contact-link:hover {
+    background-color: #0d47a1;
+    color: white;
+  }
+
+  /* 右侧内容栏 */
+  .main-content {
+    flex: 1;
+  }
+
+  .section {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .section-title {
+    color: #0d47a1;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #0d47a1;
+  }
+
+  .post-list,
+  .publication-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .post-item,
+  .publication-item {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+
+  .post-item:hover,
+  .publication-item:hover {
+    background-color: #e3f2fd;
+    transform: translateX(5px);
+  }
+
+  .post-link,
+  .publication-link {
+    color: #0d47a1;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .post-meta,
+  .publication-meta {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+
+  .categories-nav {
+    margin-bottom: 2rem;
+  }
+
+  .category-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .category-title {
+    color: #0d47a1;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .subcategories-list {
+    list-style: none;
+    padding-left: 1rem;
+    margin: 0;
+  }
+
+  .subcategory-item {
+    margin: 0.3rem 0;
+  }
+
+  .subcategory-link {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+  }
+
+  .subcategory-link:hover {
+    color: #0d47a1;
+    padding-left: 0.5rem;
+  }
+
+  .post-count {
+    color: #999;
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+  }
+
+  /* 响应式设计 */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+
+    .sidebar {
+      width: 100%;
+      position: relative;
+      top: 0;
+    }
+  }
+</style>
+
+<div class="container">
+  <!-- 左侧个人信息栏 -->
+  <aside class="sidebar">
+    <div class="profile">
+      <img src="/assets/images/avatar.jpg" alt="头像" class="avatar">
+      <h1 class="name">洪晨辰</h1>
+      <p class="title">NUDTer</p>
+    </div>
+
+    <div class="bio">
+      欢迎访问我的个人网站！这里记录了我的技术博客、学术成果和项目经验。
+    </div>
+
+    <nav class="categories-nav">
+      <h2 class="section-title">博客专栏</h2>
+      
+      <div class="category-group">
+        <h3 class="category-title">嵌入式开发</h3>
+        <ul class="subcategories-list">
+          
+          <li class="subcategory-item">
+            
+            <a href="/blog/embedded/rtos" class="subcategory-link">
+              实时操作系统
+              <span class="post-count">(1)</span>
+            </a>
+          </li>
+          
+          <li class="subcategory-item">
+            
+            <a href="/blog/embedded/driver" class="subcategory-link">
+              驱动开发
+              <span class="post-count">(0)</span>
+            </a>
+          </li>
+          
+          <li class="subcategory-item">
+            
+            <a href="/blog/embedded/mcu" class="subcategory-link">
+              单片机开发
+              <span class="post-count">(0)</span>
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+      
+      <div class="category-group">
+        <h3 class="category-title">编译技术</h3>
+        <ul class="subcategories-list">
+          
+          <li class="subcategory-item">
+            
+            <a href="/blog/compiler/llvm" class="subcategory-link">
+              LLVM
+              <span class="post-count">(1)</span>
+            </a>
+          </li>
+          
+          <li class="subcategory-item">
+            
+            <a href="/blog/compiler/optimization" class="subcategory-link">
+              编译优化
+              <span class="post-count">(0)</span>
+            </a>
+          </li>
+          
+          <li class="subcategory-item">
+            
+            <a href="/blog/compiler/analysis" class="subcategory-link">
+              程序分析
+              <span class="post-count">(0)</span>
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+      
+    </nav>
+
+    <div class="contact-links">
+      <a href="mailto:hongcc727@163.com" class="contact-link">邮件联系</a>
+      <a href="https://github.com/Hayden727" class="contact-link">GitHub</a>
+      <a href="https://linkedin.com/in/your-linkedin" class="contact-link">LinkedIn</a>
+    </div>
+  </aside>
+
+  <!-- 右侧内容栏 -->
+  <main class="main-content">
+    <!-- 博客文章部分 -->
+    <section class="section">
+      <h2 class="section-title">最新文章</h2>
+      <ul class="post-list">
+        
+        <li class="post-item">
+          <a href="/blog/general/2024/04/15/welcome/" class="post-link">欢迎来到我的博客</a>
+          <div class="post-meta">
+            2024年04月15日 ·
+             /
+            
+          </div>
+        </li>
+        
+        <li class="post-item">
+          <a href="/blog/embedded/2024/04/15/rtos-introduction/" class="post-link">实时操作系统概述</a>
+          <div class="post-meta">
+            2024年04月15日 ·
+            嵌入式开发 /
+            实时操作系统
+          </div>
+        </li>
+        
+        <li class="post-item">
+          <a href="/blog/compiler/2024/04/15/llvm-introduction/" class="post-link">LLVM编译框架入门</a>
+          <div class="post-meta">
+            2024年04月15日 ·
+            编译技术 /
+            LLVM
+          </div>
+        </li>
+        
+      </ul>
+    </section>
+
+    <!-- 学术成果部分 -->
+    <section class="section">
+      <h2 class="section-title">学术成果</h2>
+      <ul class="publication-list">
+        
+        <li class="publication-item">
+          <a href="/publications/example-paper/" class="publication-link">示例研究论文</a>
+          <div class="publication-meta">您的名字, 合作者名字 - 示例研究期刊 (2024)</div>
+        </li>
+        
+      </ul>
+    </section>
+
+    <!-- GitHub仓库部分 -->
+    <section class="section">
+      <h2 class="section-title">GitHub仓库</h2>
+      <div class="github-repos">
+        <!-- 这里可以添加GitHub仓库的展示 -->
+        <p>正在加载GitHub仓库信息...</p>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+
+</html>

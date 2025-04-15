@@ -1,0 +1,49 @@
+---
+layout: default
+---
+<article class="publication">
+  <header class="publication-header">
+    <h1>{{ page.title }}</h1>
+    <p class="publication-meta">
+      {{ page.authors }} - {{ page.venue }} ({{ page.date | date: "%Y" }})
+      {% if page.doi %}
+      <br>
+      DOI: <a href="https://doi.org/{{ page.doi }}" target="_blank">{{ page.doi }}</a>
+      {% endif %}
+    </p>
+  </header>
+
+  <div class="publication-content">
+    {{ content }}
+  </div>
+</article>
+
+<style>
+  .publication {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .publication-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #1e88e5;
+  }
+
+  .publication-meta {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+
+  .publication-content {
+    line-height: 1.6;
+  }
+
+  .publication-content h2 {
+    color: #1e88e5;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+</style>
