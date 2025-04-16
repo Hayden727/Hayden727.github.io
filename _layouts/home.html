@@ -647,38 +647,67 @@ layout: default
 
   /* 修改左侧栏内容 */
   .recent-plans {
-    margin-top: 2rem;
+    margin: 20px 0;
+  }
+
+  .plans-list {
+    display: grid;
+    gap: 8px;
+    margin-top: 12px;
   }
 
   .plan-item {
-    padding: 1rem;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    margin-bottom: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 6px;
+    padding: 10px 12px;
+    text-decoration: none;
+    color: inherit;
     transition: all 0.3s ease;
+    border: 1px solid rgba(230, 230, 230, 0.7);
   }
 
   .plan-item:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-color: rgba(0, 102, 255, 0.3);
   }
 
   .plan-title {
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: #2d3748;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #121212;
+    margin-bottom: 6px;
   }
 
-  .plan-date {
-    font-size: 0.875rem;
-    color: #718096;
+  .plan-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .plan-quarter {
+    font-size: 0.8rem;
+    color: #8590A6;
+  }
+
+  .plan-status {
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: rgba(0, 102, 255, 0.1);
+    color: #0066FF;
+  }
+
+  .dark .plan-item {
+    background: rgba(45, 55, 72, 0.9);
   }
 
   .dark .plan-title {
     color: #e2e8f0;
   }
 
-  .dark .plan-date {
+  .dark .plan-quarter {
     color: #a0aec0;
   }
 
@@ -743,6 +772,20 @@ layout: default
     filter: brightness(0.8);
     z-index: -2;
     transition: background-image 0.3s ease;
+  }
+
+  .recent-plans .section-title {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e2e8f0;
+  }
+
+  .plan-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 6px;
   }
 </style>
 
@@ -823,14 +866,22 @@ layout: default
 
     <!-- 近期规划 -->
     <div class="recent-plans">
-      <h2 class="section-title" data-section="recent_plans" data-en="Recent Plans" data-zh="近期规划">近期规划</h2>
-      <div class="plan-item">
-        <div class="plan-title">计划1</div>
-        <div class="plan-date">2024年Q1</div>
-      </div>
-      <div class="plan-item">
-        <div class="plan-title">计划2</div>
-        <div class="plan-date">2024年Q2</div>
+      <h2 class="section-title" data-en="Recent Plans" data-zh="近期规划">近期规划</h2>
+      <div class="plans-list">
+        <a href="{{ '/projects/turbomake' | relative_url }}" class="plan-item">
+          <h3 class="plan-title">TurboMake - 智能构建系统</h3>
+          <div class="plan-info">
+            <span class="plan-quarter">2024年Q2</span>
+            <span class="plan-status">规划中</span>
+          </div>
+        </a>
+        <a href="{{ '/projects/mlir' | relative_url }}" class="plan-item">
+          <h3 class="plan-title">MLIR 编译优化框架</h3>
+          <div class="plan-info">
+            <span class="plan-quarter">2024年Q3</span>
+            <span class="plan-status">规划中</span>
+          </div>
+        </a>
       </div>
     </div>
   </aside>

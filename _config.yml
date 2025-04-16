@@ -26,19 +26,36 @@ permalink: /:year/:month/:day/:title/
 theme_color: "#2c5282"          # 主题色
 background_color: "#f5f7fa"     # 背景色
 
-# 博客分类
+# 博客分类结构
 categories:
   编译技术:
-    - name: LLVM
-      en: LLVM
-    - name: MLIR
-      en: MLIR
-    - name: 优化方法
-      en: Optimization Methods
+    en: Compiler Technology
+    subcategories:
+      - name: LLVM
+        en: LLVM
+      - name: MLIR
+        en: MLIR
+      - name: 优化方法
+        en: Optimization Methods
   嵌入式开发:
-    - name: RTOS
-      en: RTOS
-    - name: MCU
-      en: MCU
+    en: Embedded Development
+    subcategories:
+      - name: RTOS
+        en: RTOS
+      - name: MCU
+        en: MCU Development
   日常:
     en: Daily
+    subcategories: []
+
+collections:
+  projects:
+    output: true
+    permalink: /projects/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"

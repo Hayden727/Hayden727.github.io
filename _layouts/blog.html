@@ -3,6 +3,130 @@ layout: default
 ---
 
 <style>
+  /* 顶栏样式 */
+  .top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .top-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .top-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 20px;
+  }
+
+  .nav-link {
+    color: #121212;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .nav-link:hover {
+    background-color: rgba(0, 102, 255, 0.1);
+    color: #0066FF;
+  }
+
+  .nav-link.active {
+    background-color: rgba(0, 102, 255, 0.1);
+    color: #0066FF;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: 12px;
+  }
+
+  .contact-button {
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 102, 255, 0.1);
+    color: #0066FF;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .contact-button:hover {
+    background: rgba(0, 102, 255, 0.2);
+    transform: translateY(-2px);
+  }
+
+  .email-popup {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: none;
+    min-width: 120px;
+    z-index: 1000;
+  }
+
+  .email-popup.active {
+    display: block;
+  }
+
+  .email-option {
+    padding: 8px 12px;
+    color: #121212;
+    text-decoration: none;
+    display: block;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .email-option:hover {
+    background: rgba(0, 102, 255, 0.1);
+    color: #0066FF;
+  }
+
+  .lang-switch {
+    background: none;
+    border: none;
+    color: #121212;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .lang-switch:hover {
+    background: rgba(0, 102, 255, 0.1);
+    color: #0066FF;
+  }
+
   /* 博客页面整体布局 */
   .blog-container {
     max-width: 1200px;
@@ -17,7 +141,7 @@ layout: default
 
   /* 背景样式 */
   body {
-    background-image: url('/assets/images/wallhaven-d5gxzo.jpg');
+    background-image: url('/assets/images/wallhaven.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -163,35 +287,86 @@ layout: default
     margin-bottom: 16px;
   }
 
+  .category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .category-header:hover {
+    background-color: rgba(0, 102, 255, 0.1);
+  }
+
   .category-name {
     font-weight: 600;
     color: #121212;
-    margin-bottom: 8px;
-    display: block;
+  }
+
+  .category-arrow {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+  }
+
+  .category-arrow.active {
+    transform: rotate(90deg);
   }
 
   .subcategory-list {
     list-style: none;
     padding-left: 20px;
     margin: 8px 0;
+    display: none;
+  }
+
+  .subcategory-list.active {
+    display: block;
   }
 
   .subcategory-item {
     margin-bottom: 8px;
   }
 
-  .subcategory-link {
+  .subcategory-header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    color: #666;
-    text-decoration: none;
     padding: 6px 12px;
+    cursor: pointer;
     border-radius: 4px;
-    font-size: 13px;
     transition: all 0.3s ease;
   }
 
-  .subcategory-link:hover {
+  .subcategory-header:hover {
+    background-color: rgba(0, 102, 255, 0.1);
+  }
+
+  .post-list {
+    list-style: none;
+    padding-left: 20px;
+    margin: 8px 0;
+    display: none;
+  }
+
+  .post-list.active {
+    display: block;
+  }
+
+  .post-link {
+    display: block;
+    padding: 6px 12px;
+    color: #666;
+    text-decoration: none;
+    font-size: 13px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .post-link:hover {
     background-color: rgba(0, 102, 255, 0.1);
     color: #0066FF;
   }
@@ -203,6 +378,42 @@ layout: default
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 </style>
+
+<div class="top-bar">
+  <div class="top-bar-left">
+    <div class="nav-links">
+      <a href="/" class="nav-link">主页</a>
+      <a href="/blog" class="nav-link active">博客</a>
+      <a href="https://github.com/Hayden727" class="nav-link" target="_blank">项目</a>
+    </div>
+  </div>
+  <div class="top-bar-right">
+    <div class="contact-links">
+      <button class="contact-button" onclick="toggleEmailPopup()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        <div class="email-popup" id="emailPopup">
+          <a href="mailto:hongcc727@163.com" class="email-option">hongcc727@163.com</a>
+          <a href="mailto:haydenbrwon277@gmail.com" class="email-option">haydenbrwon277@gmail.com</a>
+        </div>
+      </button>
+      <a href="https://github.com/Hayden727" class="contact-button" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2">
+          <path
+            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+          </path>
+        </svg>
+      </a>
+    </div>
+    <button class="lang-switch" onclick="toggleLanguage()">
+      <span class="lang-text">EN</span>
+    </button>
+  </div>
+</div>
 
 <div class="blog-container">
   <main class="blog-main">
@@ -216,10 +427,17 @@ layout: default
         {% endif %}
         <div class="article-content">
           <a href="{{ post.url | relative_url }}" class="article-title" data-en="{{ post.title_en }}"
-            data-zh="{{ post.title }}">{{ post.title }}</a>
+            data-zh="{{ post.title }}">
+            {% if post.title %}
+            {{ post.title }}
+            {% else %}
+            Untitled Post
+            {% endif %}
+          </a>
           {% if post.excerpt %}
-          <div class="article-excerpt" data-en="{{ post.excerpt_en }}" data-zh="{{ post.excerpt }}">{{ post.excerpt |
-            strip_html | truncate: 200 }}</div>
+          <div class="article-excerpt" data-en="{{ post.excerpt_en }}" data-zh="{{ post.excerpt }}">
+            {{ post.excerpt | strip_html | truncate: 200 }}
+          </div>
           {% endif %}
           <div class="article-meta">
             <span class="article-date">{{ post.date | date: "%Y年%m月%d日" }}</span>
@@ -243,30 +461,198 @@ layout: default
     <nav class="category-nav">
       <h2 class="category-title" data-en="Categories" data-zh="文章分类">文章分类</h2>
       <ul class="category-list">
-        {% for category in site.categories %}
+        <!-- 编译技术 -->
         <li class="category-item">
-          <span class="category-name" data-en="{{ category[0].en }}" data-zh="{{ category[0] }}">{{ category[0]
-            }}</span>
-          {% if category[1].size > 0 %}
-          <ul class="subcategory-list">
-            {% for subcategory in category[1] %}
+          <div class="category-header" onclick="toggleCategory('compiler')">
+            <span class="category-name">编译技术</span>
+            <svg class="category-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </div>
+          <ul class="subcategory-list" id="category-compiler">
             <li class="subcategory-item">
-              <a href="/categories/{{ category[0] | slugify }}/{{ subcategory.name | slugify }}"
-                class="subcategory-link">
-                <span data-en="{{ subcategory.en }}" data-zh="{{ subcategory.name }}">{{ subcategory.name }}</span>
+              <div class="subcategory-header" onclick="toggleSubcategory('compiler-llvm')">
+                <span>LLVM</span>
+                <svg class="category-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </div>
+              <ul class="post-list" id="subcategory-compiler-llvm">
+                {% for post in site.posts %}
+                {% if post.category == "编译技术" and post.subcategory == "LLVM" %}
+                <li>
+                  <a href="{{ post.url | relative_url }}" class="post-link" data-en="{{ post.title_en }}"
+                    data-zh="{{ post.title }}">
+                    {{ post.title }}
+                  </a>
+                </li>
+                {% endif %}
+                {% endfor %}
+              </ul>
+            </li>
+            <li class="subcategory-item">
+              <div class="subcategory-header" onclick="toggleSubcategory('compiler-mlir')">
+                <span>MLIR</span>
+                <svg class="category-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </div>
+              <ul class="post-list" id="subcategory-compiler-mlir">
+                {% for post in site.posts %}
+                {% if post.category == "编译技术" and post.subcategory == "MLIR" %}
+                <li>
+                  <a href="{{ post.url | relative_url }}" class="post-link" data-en="{{ post.title_en }}"
+                    data-zh="{{ post.title }}">
+                    {{ post.title }}
+                  </a>
+                </li>
+                {% endif %}
+                {% endfor %}
+              </ul>
+            </li>
+            <li class="subcategory-item">
+              <div class="subcategory-header" onclick="toggleSubcategory('compiler-optimization')">
+                <span>优化方法</span>
+                <svg class="category-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </div>
+              <ul class="post-list" id="subcategory-compiler-optimization">
+                {% for post in site.posts %}
+                {% if post.category == "编译技术" and post.subcategory == "优化方法" %}
+                <li>
+                  <a href="{{ post.url | relative_url }}" class="post-link" data-en="{{ post.title_en }}"
+                    data-zh="{{ post.title }}">
+                    {{ post.title }}
+                  </a>
+                </li>
+                {% endif %}
+                {% endfor %}
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <!-- 嵌入式开发 -->
+        <li class="category-item">
+          <div class="category-header" onclick="toggleCategory('embedded')">
+            <span class="category-name">嵌入式开发</span>
+            <svg class="category-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </div>
+          <ul class="subcategory-list" id="category-embedded">
+            <li class="subcategory-item">
+              <div class="subcategory-header" onclick="toggleSubcategory('embedded-rtos')">
+                <span>RTOS</span>
+                <svg class="category-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </div>
+              <ul class="post-list" id="subcategory-embedded-rtos">
+                {% for post in site.posts %}
+                {% if post.category == "嵌入式开发" and post.subcategory == "RTOS" %}
+                <li>
+                  <a href="{{ post.url | relative_url }}" class="post-link" data-en="{{ post.title_en }}"
+                    data-zh="{{ post.title }}">
+                    {{ post.title }}
+                  </a>
+                </li>
+                {% endif %}
+                {% endfor %}
+              </ul>
+            </li>
+            <li class="subcategory-item">
+              <div class="subcategory-header" onclick="toggleSubcategory('embedded-mcu')">
+                <span>MCU</span>
+                <svg class="category-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </div>
+              <ul class="post-list" id="subcategory-embedded-mcu">
+                {% for post in site.posts %}
+                {% if post.category == "嵌入式开发" and post.subcategory == "MCU" %}
+                <li>
+                  <a href="{{ post.url | relative_url }}" class="post-link" data-en="{{ post.title_en }}"
+                    data-zh="{{ post.title }}">
+                    {{ post.title }}
+                  </a>
+                </li>
+                {% endif %}
+                {% endfor %}
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <!-- 日常 -->
+        <li class="category-item">
+          <div class="category-header">
+            <span class="category-name">日常</span>
+          </div>
+          <ul class="post-list" id="category-daily">
+            {% for post in site.posts %}
+            {% if post.category == "日常" %}
+            <li>
+              <a href="{{ post.url | relative_url }}" class="post-link" data-en="{{ post.title_en }}"
+                data-zh="{{ post.title }}">
+                {{ post.title }}
               </a>
             </li>
+            {% endif %}
             {% endfor %}
           </ul>
-          {% endif %}
         </li>
-        {% endfor %}
       </ul>
     </nav>
   </aside>
 </div>
 
 <script>
+  function toggleCategory(categoryId) {
+    const categoryList = document.getElementById(`category-${categoryId}`);
+    const arrow = categoryList.previousElementSibling.querySelector('.category-arrow');
+
+    // 关闭其他所有展开的分类
+    document.querySelectorAll('.subcategory-list.active').forEach(item => {
+      if (item.id !== `category-${categoryId}`) {
+        item.classList.remove('active');
+        const otherArrow = item.previousElementSibling.querySelector('.category-arrow');
+        if (otherArrow) otherArrow.classList.remove('active');
+      }
+    });
+
+    categoryList.classList.toggle('active');
+    if (arrow) arrow.classList.toggle('active');
+
+    // 关闭所有展开的文章列表
+    if (!categoryList.classList.contains('active')) {
+      categoryList.querySelectorAll('.post-list.active').forEach(item => {
+        item.classList.remove('active');
+        const postArrow = item.previousElementSibling.querySelector('.category-arrow');
+        if (postArrow) postArrow.classList.remove('active');
+      });
+    }
+  }
+
+  function toggleSubcategory(subcategoryId) {
+    const postList = document.getElementById(`subcategory-${subcategoryId}`);
+    const arrow = postList.previousElementSibling.querySelector('.category-arrow');
+
+    // 关闭同级的其他文章列表
+    const parentCategory = postList.closest('.subcategory-list');
+    parentCategory.querySelectorAll('.post-list.active').forEach(item => {
+      if (item.id !== `subcategory-${subcategoryId}`) {
+        item.classList.remove('active');
+        const otherArrow = item.previousElementSibling.querySelector('.category-arrow');
+        if (otherArrow) otherArrow.classList.remove('active');
+      }
+    });
+
+    postList.classList.toggle('active');
+    if (arrow) arrow.classList.toggle('active');
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     // 初始化语言
     updateBlogLanguage();
@@ -286,4 +672,26 @@ layout: default
       element.textContent = element.getAttribute(`data-${currentLang}`);
     });
   }
+
+  function toggleEmailPopup() {
+    const popup = document.querySelector('.email-popup');
+    popup.classList.toggle('active');
+  }
+
+  function toggleLanguage() {
+    const html = document.documentElement;
+    const currentLang = html.getAttribute('lang') || 'zh';
+    const newLang = currentLang === 'zh' ? 'en' : 'zh';
+    html.setAttribute('lang', newLang);
+    updateBlogLanguage();
+  }
+
+  // 点击其他地方关闭邮箱弹窗
+  document.addEventListener('click', function (event) {
+    const popup = document.querySelector('.email-popup');
+    const button = document.querySelector('.contact-button');
+    if (!popup.contains(event.target) && !button.contains(event.target)) {
+      popup.classList.remove('active');
+    }
+  });
 </script>
