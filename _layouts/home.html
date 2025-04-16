@@ -3,26 +3,41 @@ layout: default
 ---
 
 <style>
-  /* 设置背景图片 */
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+  /* 背景图片样式 */
+  body {
     background-image: url('/assets/images/wallhaven.jpg');
     background-size: cover;
     background-position: center;
-    filter: brightness(0.95);
-    z-index: -2;
-    transition: background-image 0.3s ease;
+    background-attachment: fixed;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
   }
 
-  /* 暗模式下的背景图片 */
-  .dark body::before {
-    background-image: url('/assets/images/wallhaven-d5gxzo.jpg');
-    filter: brightness(0.8);
+  /* 顶栏样式 */
+  .top-bar {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* 主要内容区域 */
+  .main-content {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  /* 侧边栏样式 */
+  .sidebar {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 10px;
+    position: sticky;
+    top: 80px;
+    height: fit-content;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   /* 顶部导航栏样式 */
@@ -154,13 +169,13 @@ layout: default
   /* 调整容器位置以适应顶栏 */
   .container {
     margin-top: 80px;
-    /* 增加顶部边距，避免被顶栏遮挡 */
     padding: 2rem;
-    display: flex;
+    display: grid;
+    grid-template-columns: 400px 1fr;
     max-width: 1400px;
     margin-left: auto;
     margin-right: auto;
-    gap: 1rem;
+    gap: 2rem;
     position: relative;
     z-index: 2;
   }
@@ -171,7 +186,6 @@ layout: default
   }
 
   body {
-    min-height: 100vh;
     position: relative;
     color: #2d3748;
     /* 调整文字颜色以适应新背景 */
@@ -208,20 +222,6 @@ layout: default
     object-fit: cover;
     object-position: center 60%;
     filter: brightness(0.95);
-  }
-
-  /* 调整侧边栏透明度 */
-  .sidebar {
-    width: 400px;
-    background-color: rgba(255, 255, 255, 0.85);
-    padding: 2rem;
-    border-radius: 10px;
-    position: sticky;
-    top: 2rem;
-    height: fit-content;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(20px);
-    z-index: 2;
   }
 
   .profile {
@@ -471,37 +471,40 @@ layout: default
     color: #4299e1;
   }
 
-  /* 调整邮箱弹窗样式 */
+  /* 邮箱弹窗样式 */
   .email-popup {
     display: none;
     position: absolute;
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(5px);
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 0.5rem;
-    z-index: 1000;
     top: 100%;
     left: 0;
-    margin-top: 0.5rem;
-    min-width: 120px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 8px 0;
+    min-width: 200px;
+    z-index: 1000;
+    margin-top: 8px;
+  }
+
+  .email-popup.active {
+    display: block;
   }
 
   .email-option {
     display: block;
-    padding: 0.5rem 1rem;
-    color: #4a5568;
+    padding: 8px 16px;
+    color: #2d3748;
     text-decoration: none;
-    border-radius: 4px;
     transition: all 0.3s ease;
   }
 
   .email-option:hover {
-    background-color: #f7fafc;
-    color: #4299e1;
+    background: rgba(0, 102, 255, 0.1);
+    color: #0066FF;
   }
 
-  /* 调整联系方式按钮样式 */
+  /* 联系方式按钮样式 */
   .contact-links {
     display: flex;
     justify-content: center;
@@ -516,17 +519,18 @@ layout: default
     justify-content: center;
     width: 40px;
     height: 40px;
-    background-color: rgba(247, 250, 252, 0.8);
-    color: #4a5568;
+    background: rgba(255, 255, 255, 0.9);
+    color: #2d3748;
     border-radius: 8px;
     transition: all 0.3s ease;
     border: none;
     cursor: pointer;
+    position: relative;
   }
 
   .contact-link:hover {
-    background-color: rgba(66, 153, 225, 0.9);
-    color: #fff;
+    background: rgba(0, 102, 255, 0.1);
+    color: #0066FF;
     transform: translateY(-2px);
   }
 
@@ -535,29 +539,22 @@ layout: default
     height: 20px;
   }
 
+  @media (max-width: 1200px) {
+    .container {
+      grid-template-columns: 350px 1fr;
+      padding: 1rem;
+    }
+  }
+
   @media (max-width: 768px) {
     .container {
-      flex-direction: column;
+      grid-template-columns: 1fr;
+      gap: 1rem;
     }
 
     .sidebar {
-      width: 100%;
       position: relative;
       top: 0;
-    }
-
-    .avatar {
-      width: 180px;
-      height: 180px;
-    }
-
-    .post-header {
-      flex-direction: column;
-    }
-
-    .post-image {
-      width: 100%;
-      height: 200px;
     }
   }
 
@@ -918,20 +915,21 @@ layout: default
 </div>
 
 <script>
-  // 邮箱提示框功能
-  function showEmailTooltip(event) {
-    const tooltip = document.getElementById('email-tooltip');
-    const rect = event.target.getBoundingClientRect();
-
-    tooltip.style.top = `${rect.bottom + 5}px`;
-    tooltip.style.left = `${rect.left}px`;
-    tooltip.style.opacity = '1';
+  // 邮箱弹窗功能
+  function toggleEmailPopup() {
+    const popup = document.getElementById('emailPopup');
+    popup.classList.toggle('active');
   }
 
-  function hideEmailTooltip() {
-    const tooltip = document.getElementById('email-tooltip');
-    tooltip.style.opacity = '0';
-  }
+  // 点击其他地方关闭邮箱弹窗
+  document.addEventListener('click', function (event) {
+    const popup = document.getElementById('emailPopup');
+    const emailButton = document.querySelector('.contact-link');
+
+    if (!emailButton.contains(event.target) && !popup.contains(event.target)) {
+      popup.classList.remove('active');
+    }
+  });
 
   // 语言切换功能
   let currentLang = 'zh';

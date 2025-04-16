@@ -11,25 +11,14 @@
 <body>
   <style>
     /* 背景图片样式 */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+    body {
       background-image: url('/assets/images/wallhaven.jpg');
       background-size: cover;
       background-position: center;
-      filter: brightness(0.95);
-      z-index: -2;
-      transition: background-image 0.3s ease;
-    }
-
-    /* 暗模式下的背景图片 */
-    .dark body::before {
-      background-image: url('/assets/images/wallhaven-d5gxzo.jpg');
-      filter: brightness(0.8);
+      background-attachment: fixed;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
     }
 
     /* 返回按钮样式 */
