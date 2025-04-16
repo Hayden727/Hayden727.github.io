@@ -27,24 +27,18 @@ theme_color: "#2c5282"          # 主题色
 background_color: "#f5f7fa"     # 背景色
 
 # 博客分类
-blog_categories:
-  compiler:
-    name: 编译技术
-    subcategories:
-      llvm:
-        name: LLVM编译框架
-      mlir:
-        name: MLIR编程模型
-      cuda_triton:
-        name: CUDA/Triton加速
-      deployment:
-        name: 推理部署优化
-      hardware:
-        name: 硬件设计
-  embedded:
-    name: 嵌入式开发
-    subcategories:
-      mcu:
-        name: 单片机开发
-      rtos:
-        name: 实时操作系统
+categories:
+  编译技术:
+    - name: LLVM
+      en: LLVM
+    - name: MLIR
+      en: MLIR
+    - name: 优化方法
+      en: Optimization Methods
+  嵌入式开发:
+    - name: RTOS
+      en: RTOS
+    - name: MCU
+      en: MCU
+  日常:
+    en: Daily

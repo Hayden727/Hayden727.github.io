@@ -3,7 +3,7 @@ layout: default
 ---
 
 <style>
-  /* 设置背景图片和遮罩 */
+  /* 设置背景图片 */
   body::before {
     content: '';
     position: fixed;
@@ -11,37 +11,181 @@ layout: default
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('/assets/images/wallhaven-1kp5jv.jpg');
+    background-image: url('/assets/images/wallhaven.jpg');
     background-size: cover;
     background-position: center;
-    filter: blur(10px) brightness(0.9);
+    filter: brightness(0.95);
     z-index: -2;
+    transition: background-image 0.3s ease;
   }
 
-  body::after {
-    content: '';
+  /* 暗模式下的背景图片 */
+  .dark body::before {
+    background-image: url('/assets/images/wallhaven-d5gxzo.jpg');
+    filter: brightness(0.8);
+  }
+
+  /* 顶部导航栏样式 */
+  .navbar {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.7);
-    z-index: -1;
+    right: 0;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .nav-link {
+    color: #2d3748;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  .nav-link:hover {
+    color: #4299e1;
+  }
+
+  .nav-link.active {
+    color: #4299e1;
+  }
+
+  .nav-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  /* 语言切换按钮 */
+  .lang-switch {
+    background: none;
+    border: none;
+    color: #2d3748;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+  }
+
+  .lang-switch:hover {
+    color: #4299e1;
+  }
+
+  /* 主题切换按钮 */
+  .theme-switch {
+    background: none;
+    border: none;
+    color: #2d3748;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .theme-switch:hover {
+    color: #4299e1;
+  }
+
+  /* 深色模式样式 */
+  @media (prefers-color-scheme: dark) {
+    body {
+      color: #e2e8f0;
+    }
+
+    .navbar {
+      background-color: rgba(26, 32, 44, 0.85);
+    }
+
+    .nav-link {
+      color: #e2e8f0;
+    }
+
+    .nav-link:hover {
+      color: #63b3ed;
+    }
+
+    .nav-link.active {
+      color: #63b3ed;
+    }
+
+    .lang-switch,
+    .theme-switch {
+      color: #e2e8f0;
+    }
+
+    .lang-switch:hover,
+    .theme-switch:hover {
+      color: #63b3ed;
+    }
+
+    .sidebar,
+    .section {
+      background-color: rgba(26, 32, 44, 0.85);
+    }
+
+    .name,
+    .section-title,
+    .category-title,
+    .post-title {
+      color: #e2e8f0;
+    }
+
+    .bio,
+    .post-excerpt {
+      color: #a0aec0;
+    }
+  }
+
+  /* 调整容器位置以适应顶栏 */
+  .container {
+    margin-top: 80px;
+    /* 增加顶部边距，避免被顶栏遮挡 */
+    padding: 2rem;
+    display: flex;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 1rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* 移除原有的 banner */
+  .banner {
+    display: none;
   }
 
   body {
     min-height: 100vh;
     position: relative;
+    color: #2d3748;
+    /* 调整文字颜色以适应新背景 */
   }
 
   .banner {
     width: 100%;
-    height: 400px;
+    height: 500px;
     position: relative;
     margin-bottom: 2rem;
     overflow: hidden;
   }
 
+  /* 注释掉 banner 的渐变遮罩
   .banner::after {
     content: '';
     position: absolute;
@@ -49,34 +193,27 @@ layout: default
     left: 0;
     width: 100%;
     height: 150px;
-    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.9));
+    background: linear-gradient(to bottom, transparent, rgba(26, 54, 93, 0.3));
+    filter: blur(20px);
     z-index: 1;
   }
+  */
 
   .banner img {
     width: 100%;
+    height: 100%;
     position: absolute;
     top: 0;
     left: 0;
     object-fit: cover;
-    object-position: center 30%;
+    object-position: center 60%;
     filter: brightness(0.95);
-  }
-
-  .container {
-    display: flex;
-    max-width: 1200px;
-    margin: -100px auto 0;
-    padding: 2rem;
-    gap: 1rem;
-    position: relative;
-    z-index: 1;
   }
 
   /* 调整侧边栏透明度 */
   .sidebar {
     width: 400px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.85);
     padding: 2rem;
     border-radius: 10px;
     position: sticky;
@@ -84,6 +221,7 @@ layout: default
     height: fit-content;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(20px);
+    z-index: 2;
   }
 
   .profile {
@@ -120,9 +258,10 @@ layout: default
     text-align: left;
   }
 
-  /* 博客分类导航 */
+  /* 博客分类导航样式调整 */
   .categories-nav {
     margin-bottom: 2rem;
+    position: relative;
   }
 
   .category-group {
@@ -144,6 +283,7 @@ layout: default
 
   .subcategory-item {
     margin: 0.5rem 0;
+    position: relative;
   }
 
   .subcategory-link {
@@ -155,6 +295,7 @@ layout: default
     padding: 0.25rem 0.5rem;
     border-radius: 4px;
     transition: all 0.3s ease;
+    cursor: default;
   }
 
   .subcategory-link:hover {
@@ -163,19 +304,79 @@ layout: default
     padding-left: 1rem;
   }
 
-  .post-count {
+  .subcategory-posts {
+    display: none;
+    position: absolute;
+    left: calc(100% + 1rem);
+    top: -1rem;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    min-width: 300px;
+    max-width: 400px;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+  }
+
+  .subcategory-item:hover .subcategory-posts {
+    display: block;
+  }
+
+  .subcategory-posts-title {
+    color: #2d3748;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .subcategory-posts-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  .subcategory-post-item {
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .subcategory-post-item:hover {
+    background-color: #f7fafc;
+  }
+
+  .subcategory-post-link {
+    color: #4a5568;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: block;
+  }
+
+  .subcategory-post-link:hover {
+    color: #4299e1;
+  }
+
+  .subcategory-post-date {
     color: #a0aec0;
-    font-size: 0.875rem;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
   }
 
   /* 调整主内容区域透明度 */
   .section {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.85);
     padding: 2rem;
     border-radius: 10px;
     margin-bottom: 2rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(20px);
+    position: relative;
+    z-index: 1;
   }
 
   .section-title {
@@ -195,7 +396,7 @@ layout: default
   .post-item {
     margin-bottom: 2rem;
     padding: 1.5rem;
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.7);
     border-radius: 8px;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
@@ -204,7 +405,7 @@ layout: default
   .post-item:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.9);
   }
 
   .post-header {
@@ -359,10 +560,231 @@ layout: default
       height: 200px;
     }
   }
+
+  /* 调整主内容区域的 z-index */
+  .main-content {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* 深色模式样式 */
+  .dark {
+    background-color: #1a202c;
+  }
+
+  .dark .navbar {
+    background-color: rgba(26, 32, 44, 0.95);
+  }
+
+  .dark .sidebar,
+  .dark .section {
+    background-color: rgba(26, 32, 44, 0.95);
+    backdrop-filter: blur(20px);
+  }
+
+  .dark .post-item {
+    background-color: rgba(45, 55, 72, 0.8);
+  }
+
+  .dark .post-item:hover {
+    background-color: rgba(45, 55, 72, 0.95);
+  }
+
+  .dark .nav-link,
+  .dark .name,
+  .dark .section-title,
+  .dark .category-title,
+  .dark .post-title {
+    color: #e2e8f0;
+  }
+
+  .dark .bio,
+  .dark .post-excerpt,
+  .dark .subcategory-link {
+    color: #a0aec0;
+  }
+
+  .dark .post-meta {
+    color: #718096;
+  }
+
+  .dark .contact-link {
+    background-color: rgba(45, 55, 72, 0.8);
+    color: #e2e8f0;
+  }
+
+  .dark .contact-link:hover {
+    background-color: rgba(66, 153, 225, 0.9);
+    color: #fff;
+  }
+
+  .dark .subcategory-posts {
+    background-color: rgba(26, 32, 44, 0.95);
+  }
+
+  .dark .subcategory-post-link {
+    color: #e2e8f0;
+  }
+
+  .dark .subcategory-post-link:hover {
+    color: #63b3ed;
+  }
+
+  .dark .email-popup {
+    background-color: rgba(26, 32, 44, 0.95);
+  }
+
+  .dark .email-option {
+    color: #e2e8f0;
+  }
+
+  .dark .email-option:hover {
+    background-color: rgba(45, 55, 72, 0.8);
+    color: #63b3ed;
+  }
+
+  /* 修改左侧栏内容 */
+  .recent-plans {
+    margin-top: 2rem;
+  }
+
+  .plan-item {
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .plan-item:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+  }
+
+  .plan-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #2d3748;
+  }
+
+  .plan-date {
+    font-size: 0.875rem;
+    color: #718096;
+  }
+
+  .dark .plan-title {
+    color: #e2e8f0;
+  }
+
+  .dark .plan-date {
+    color: #a0aec0;
+  }
+
+  /* 修改最新活动样式 */
+  .activity-type {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    margin-right: 0.5rem;
+    background-color: rgba(66, 153, 225, 0.1);
+    color: #4299e1;
+  }
+
+  .dark .activity-type {
+    background-color: rgba(99, 179, 237, 0.1);
+    color: #63b3ed;
+  }
+
+  /* 邮箱提示框样式 */
+  .email-tooltip {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 0.875rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+  }
+
+  .dark .email-tooltip {
+    background-color: rgba(26, 32, 44, 0.95);
+    color: #e2e8f0;
+  }
+
+  /* 修改深色模式下的导航栏按钮颜色 */
+  .dark .nav-controls .lang-switch,
+  .dark .nav-controls .theme-switch {
+    color: #e2e8f0;
+  }
+
+  .dark .nav-controls .lang-switch:hover,
+  .dark .nav-controls .theme-switch:hover {
+    color: #63b3ed;
+  }
+
+  /* 修复深色模式下的背景显示 */
+  .dark body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/assets/images/wallhaven-d5gxzo.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.8);
+    z-index: -2;
+    transition: background-image 0.3s ease;
+  }
 </style>
 
-<div class="banner">
-  <img src="/assets/images/wallhaven-exdqpo.jpg" alt="Banner">
+<!-- 顶部导航栏 -->
+<nav class="navbar">
+  <div class="nav-links">
+    <a href="/" class="nav-link">主页</a>
+    <a href="/blog" class="nav-link">博客</a>
+    <a href="https://github.com/Hayden727" class="nav-link" target="_blank">项目</a>
+  </div>
+  <div class="nav-controls">
+    <button class="lang-switch" onclick="toggleLanguage()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+        <path d="M2 12h20"></path>
+      </svg>
+      <span class="lang-text">EN</span>
+    </button>
+    <button class="theme-switch" onclick="toggleTheme()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        class="sun-icon">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        class="moon-icon" style="display: none;">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<div id="email-tooltip" class="email-tooltip">
+  hongcc727@163.com / haydenbrwon277@gmail.com
 </div>
 
 <div class="container">
@@ -380,87 +802,61 @@ layout: default
 
     <!-- 联系方式 -->
     <div class="contact-links">
-      <button class="contact-link" id="email-button" onclick="toggleEmailPopup()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <button class="contact-link" onclick="toggleEmailPopup()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
           <polyline points="22,6 12,13 2,6"></polyline>
         </svg>
       </button>
-      <div id="email-popup" class="email-popup">
-        <a href="mailto:hongcc727@163.com" class="email-option">163邮箱</a>
-        <a href="mailto:haydenbrwon277@gmail.com" class="email-option">Gmail</a>
-      </div>
-      {% if site.github_username %}
-      <a href="https://github.com/{{ site.github_username }}" class="contact-link" target="_blank">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <a href="https://github.com/Hayden727" class="contact-link" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path
             d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
           </path>
         </svg>
       </a>
-      {% endif %}
+      <div class="email-popup" id="emailPopup">
+        <a href="mailto:hayden727@163.com" class="email-option">hayden727@163.com</a>
+        <a href="mailto:hayden727@gmail.com" class="email-option">hayden727@gmail.com</a>
+      </div>
     </div>
 
-    <!-- 博客分类导航 -->
-    <nav class="categories-nav">
-      <h2 class="section-title">博客栏目</h2>
-      {% for category in site.blog_categories %}
-      <div class="category-group">
-        <h3 class="category-title">{{ category[1].name }}</h3>
-        <ul class="subcategories-list">
-          {% for subcategory in category[1].subcategories %}
-          <li class="subcategory-item">
-            {% assign posts = site.posts | where: "categories", category[0] | where: "subcategories", subcategory[0] %}
-            <a href="/blog/{{ category[0] }}/{{ subcategory[0] }}" class="subcategory-link">
-              {{ subcategory[1].name }}
-              <span class="post-count">({{ posts.size }})</span>
-            </a>
-          </li>
-          {% endfor %}
-        </ul>
+    <!-- 近期规划 -->
+    <div class="recent-plans">
+      <h2 class="section-title" data-section="recent_plans" data-en="Recent Plans" data-zh="近期规划">近期规划</h2>
+      <div class="plan-item">
+        <div class="plan-title">计划1</div>
+        <div class="plan-date">2024年Q1</div>
       </div>
-      {% endfor %}
-    </nav>
+      <div class="plan-item">
+        <div class="plan-title">计划2</div>
+        <div class="plan-date">2024年Q2</div>
+      </div>
+    </div>
   </aside>
 
   <!-- 右侧内容区域 -->
   <main class="main-content">
     <section class="section">
-      <h2 class="section-title">最新文章</h2>
+      <h2 class="section-title" data-section="recent_activities" data-en="Recent Activities" data-zh="最近活动">最近活动</h2>
       <ul class="post-list">
-        {% for post in site.posts %}
+        {% for post in site.posts limit:5 %}
         <li class="post-item">
           <div class="post-header">
             {% if post.image %}
             <img src="/assets/blog_image/{{ post.image }}" alt="{{ post.title }}" class="post-image">
             {% endif %}
             <div class="post-content">
+              <div class="post-meta">
+                <span class="activity-type">{{ post.activity_type | default: "博客" }}</span>
+                <span class="post-date" data-date="{{ post.date | date_to_xmlschema }}">
+                  {{ post.date | date: "%Y年%m月%d日" }}
+                </span>
+              </div>
               <a href="{{ post.url | relative_url }}" class="post-title">{{ post.title }}</a>
               {% if post.excerpt %}
               <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
               {% endif %}
-              <div class="post-meta">
-                <span class="post-date">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                  </svg>
-                  {{ post.date | date: "%Y年%m月%d日" }}
-                </span>
-                {% if post.categories %}
-                <span class="post-category">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                  </svg>
-                  {{ site.blog_categories[post.categories.first].name }}
-                  {% if post.subcategories %}
-                  / {{ site.blog_categories[post.categories.first].subcategories[post.subcategories.first].name }}
-                  {% endif %}
-                </span>
-                {% endif %}
-              </div>
             </div>
           </div>
         </li>
@@ -471,23 +867,117 @@ layout: default
 </div>
 
 <script>
-  function toggleEmailPopup() {
-    const popup = document.getElementById('email-popup');
+  // 邮箱提示框功能
+  function showEmailTooltip(event) {
+    const tooltip = document.getElementById('email-tooltip');
+    const rect = event.target.getBoundingClientRect();
 
-    if (popup.style.display === 'block') {
-      popup.style.display = 'none';
+    tooltip.style.top = `${rect.bottom + 5}px`;
+    tooltip.style.left = `${rect.left}px`;
+    tooltip.style.opacity = '1';
+  }
+
+  function hideEmailTooltip() {
+    const tooltip = document.getElementById('email-tooltip');
+    tooltip.style.opacity = '0';
+  }
+
+  // 语言切换功能
+  let currentLang = 'zh';
+
+  function toggleLanguage() {
+    currentLang = currentLang === 'zh' ? 'en' : 'zh';
+    document.querySelector('.lang-text').textContent = currentLang.toUpperCase();
+
+    // 更新所有带有 data-zh 和 data-en 属性的元素
+    document.querySelectorAll('[data-zh][data-en]').forEach(el => {
+      el.textContent = el.getAttribute(`data-${currentLang}`);
+    });
+
+    // 更新文档标题
+    document.title = currentLang === 'zh' ? '{{ site.title }}' : '{{ site.title_en }}';
+
+    // 更新博客分类标题
+    const categoryTitles = {
+      zh: {
+        'latest_posts': '最新文章',
+        'blog_section': '博客栏目',
+        'contact': '联系方式',
+      },
+      en: {
+        'latest_posts': 'Latest Posts',
+        'blog_section': 'Blog Categories',
+        'contact': 'Contact',
+      }
+    };
+
+    // 更新分类标题
+    document.querySelectorAll('.section-title').forEach(el => {
+      const key = el.getAttribute('data-section');
+      if (key && categoryTitles[currentLang][key]) {
+        el.textContent = categoryTitles[currentLang][key];
+      }
+    });
+
+    // 更新日期格式
+    document.querySelectorAll('.post-date').forEach(el => {
+      const date = new Date(el.getAttribute('data-date'));
+      el.textContent = formatDate(date, currentLang);
+    });
+  }
+
+  // 日期格式化函数
+  function formatDate(date, lang) {
+    if (lang === 'zh') {
+      return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
     } else {
-      popup.style.display = 'block';
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      return date.toLocaleDateString('en-US', options);
     }
   }
 
-  // 点击其他地方关闭弹窗
-  document.addEventListener('click', function (event) {
-    const popup = document.getElementById('email-popup');
-    const button = document.getElementById('email-button');
+  // 主题切换功能
+  function toggleTheme() {
+    const html = document.documentElement;
+    const sunIcon = document.querySelector('.sun-icon');
+    const moonIcon = document.querySelector('.moon-icon');
 
-    if (!button.contains(event.target) && !popup.contains(event.target)) {
-      popup.style.display = 'none';
+    if (html.classList.contains('dark')) {
+      html.classList.remove('dark');
+      sunIcon.style.display = 'block';
+      moonIcon.style.display = 'none';
+    } else {
+      html.classList.add('dark');
+      sunIcon.style.display = 'none';
+      moonIcon.style.display = 'block';
     }
+  }
+
+  // 检测系统主题
+  function detectSystemTheme() {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const html = document.documentElement;
+    const sunIcon = document.querySelector('.sun-icon');
+    const moonIcon = document.querySelector('.moon-icon');
+
+    function updateTheme(e) {
+      if (e.matches) {
+        html.classList.add('dark');
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+      } else {
+        html.classList.remove('dark');
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+      }
+    }
+
+    prefersDark.addListener(updateTheme);
+    updateTheme(prefersDark);
+  }
+
+  // 页面加载时初始化
+  document.addEventListener('DOMContentLoaded', function () {
+    detectSystemTheme();
   });
 </script>

@@ -1,0 +1,289 @@
+---
+layout: default
+---
+
+<style>
+  /* 博客页面整体布局 */
+  .blog-container {
+    max-width: 1200px;
+    margin: 80px auto 0;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* 背景样式 */
+  body {
+    background-image: url('/assets/images/wallhaven-d5gxzo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  /* 主内容区域 */
+  .blog-main {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  /* 文章列表样式 */
+  .article-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .article-item {
+    padding: 24px;
+    border-bottom: 1px solid rgba(230, 230, 230, 0.7);
+    transition: all 0.3s ease;
+    display: flex;
+    gap: 20px;
+  }
+
+  .article-item:hover {
+    background-color: rgba(250, 250, 250, 0.9);
+  }
+
+  .article-item:last-child {
+    border-bottom: none;
+  }
+
+  /* 文章封面图 */
+  .article-cover {
+    flex-shrink: 0;
+    width: 180px;
+    height: 120px;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .article-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .article-cover:hover img {
+    transform: scale(1.02);
+  }
+
+  /* 文章内容区 */
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* 文章标题 */
+  .article-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #121212;
+    margin-bottom: 8px;
+    line-height: 1.4;
+    text-decoration: none;
+    display: block;
+  }
+
+  .article-title:hover {
+    color: #0066FF;
+  }
+
+  /* 文章摘要 */
+  .article-excerpt {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* 文章元信息 */
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 13px;
+    color: #8590A6;
+  }
+
+  .article-category {
+    color: #0066FF;
+    text-decoration: none;
+  }
+
+  .article-category:hover {
+    text-decoration: underline;
+  }
+
+  /* 侧边栏 */
+  .blog-sidebar {
+    position: sticky;
+    top: 80px;
+    height: fit-content;
+  }
+
+  /* 分类导航 */
+  .category-nav {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .category-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #121212;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(230, 230, 230, 0.7);
+  }
+
+  .category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .category-item {
+    margin-bottom: 16px;
+  }
+
+  .category-name {
+    font-weight: 600;
+    color: #121212;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .subcategory-list {
+    list-style: none;
+    padding-left: 20px;
+    margin: 8px 0;
+  }
+
+  .subcategory-item {
+    margin-bottom: 8px;
+  }
+
+  .subcategory-link {
+    display: flex;
+    align-items: center;
+    color: #666;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    transition: all 0.3s ease;
+  }
+
+  .subcategory-link:hover {
+    background-color: rgba(0, 102, 255, 0.1);
+    color: #0066FF;
+  }
+
+  /* 导航栏样式继承自default布局 */
+  .navbar {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+</style>
+
+<div class="blog-container">
+  <main class="blog-main">
+    <ul class="article-list">
+      {% for post in site.posts %}
+      <li class="article-item">
+        {% if post.image %}
+        <a href="{{ post.url | relative_url }}" class="article-cover">
+          <img src="/assets/blog_image/{{ post.image }}" alt="{{ post.title }}">
+        </a>
+        {% endif %}
+        <div class="article-content">
+          <a href="{{ post.url | relative_url }}" class="article-title" data-en="{{ post.title_en }}"
+            data-zh="{{ post.title }}">{{ post.title }}</a>
+          {% if post.excerpt %}
+          <div class="article-excerpt" data-en="{{ post.excerpt_en }}" data-zh="{{ post.excerpt }}">{{ post.excerpt |
+            strip_html | truncate: 200 }}</div>
+          {% endif %}
+          <div class="article-meta">
+            <span class="article-date">{{ post.date | date: "%Y年%m月%d日" }}</span>
+            {% if post.category %}
+            <a href="#" class="article-category" data-en="{{ post.category_en }}" data-zh="{{ post.category }}">{{
+              post.category }}</a>
+            {% endif %}
+            <span class="article-read-time"
+              data-en="{{ post.content | number_of_words | divided_by: 350 | plus: 1 }} min read"
+              data-zh="{{ post.content | number_of_words | divided_by: 350 | plus: 1 }} 分钟阅读">
+              {{ post.content | number_of_words | divided_by: 350 | plus: 1 }} 分钟阅读
+            </span>
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </main>
+
+  <aside class="blog-sidebar">
+    <nav class="category-nav">
+      <h2 class="category-title" data-en="Categories" data-zh="文章分类">文章分类</h2>
+      <ul class="category-list">
+        {% for category in site.categories %}
+        <li class="category-item">
+          <span class="category-name" data-en="{{ category[0].en }}" data-zh="{{ category[0] }}">{{ category[0]
+            }}</span>
+          {% if category[1].size > 0 %}
+          <ul class="subcategory-list">
+            {% for subcategory in category[1] %}
+            <li class="subcategory-item">
+              <a href="/categories/{{ category[0] | slugify }}/{{ subcategory.name | slugify }}"
+                class="subcategory-link">
+                <span data-en="{{ subcategory.en }}" data-zh="{{ subcategory.name }}">{{ subcategory.name }}</span>
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </aside>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // 初始化语言
+    updateBlogLanguage();
+
+    // 监听语言切换
+    const languageToggle = document.querySelector('.lang-switch');
+    if (languageToggle) {
+      languageToggle.addEventListener('click', updateBlogLanguage);
+    }
+  });
+
+  function updateBlogLanguage() {
+    const currentLang = document.documentElement.getAttribute('lang') || 'zh';
+    const elements = document.querySelectorAll('[data-en][data-zh]');
+
+    elements.forEach(element => {
+      element.textContent = element.getAttribute(`data-${currentLang}`);
+    });
+  }
+</script>
