@@ -1,63 +1,50 @@
-title: 洪晨辰
-email: hongcc727@163.com
-description: >- # this means to ignore newlines until "baseurl:"
-  欢迎访问我的个人网站！这里记录了我的技术博客、学术成果和项目经验。
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+# 个人信息设置
+title: Hayden                    # 你的名字
+subtitle: NUDTer                 # 你的头衔/简短描述
+description: >-                  # 个人简介
+  分享技术、编程和研究的思考。
+  热爱探索新技术，专注于计算机科学领域。
 
-# Build settings
+# 联系方式
+emails: 
+  - hongcc727@163.com
+  - haydenbrwon277@gmail.com
+github_username: Hayden727       # GitHub 用户名
+
+# 个人详细信息
+location: Wuhan, China           # 所在地
+company: NUDT                    # 公司/组织
+avatar: /assets/images/avatar.jpg # 头像路径
+
+# 网站设置
+baseurl: ""
+url: ""
 markdown: kramdown
-theme: minima
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
+permalink: /:year/:month/:day/:title/
 
-# 博客专栏设置
+# 主题设置
+theme_color: "#2c5282"          # 主题色
+background_color: "#f5f7fa"     # 背景色
+
+# 博客分类
 blog_categories:
-  embedded:
-    name: "嵌入式开发"
-    subcategories:
-      rtos:
-        name: "实时操作系统"
-      driver:
-        name: "驱动开发"
-      mcu:
-        name: "单片机开发"
   compiler:
-    name: "编译技术"
+    name: 编译技术
     subcategories:
       llvm:
-        name: "LLVM"
-      optimization:
-        name: "编译优化"
-      analysis:
-        name: "程序分析"
-
-# Collections
-collections:
-  posts:
-    output: true
-    permalink: /blog/:categories/:year/:month/:day/:title/
-  publications:
-    output: true
-    permalink: /publications/:title/
-
-# Defaults
-defaults:
-  -
-    scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "post"
-  -
-    scope:
-      path: ""
-      type: "publications"
-    values:
-      layout: "publication"
-
-# 自定义设置
-avatar: /assets/images/avatar.jpg
-theme_color: "#0d47a1"  # 主色调：蓝色
-background_color: "#ffffff"  # 背景色：白色 
+        name: LLVM编译框架
+      mlir:
+        name: MLIR编程模型
+      cuda_triton:
+        name: CUDA/Triton加速
+      deployment:
+        name: 推理部署优化
+      hardware:
+        name: 硬件设计
+  embedded:
+    name: 嵌入式开发
+    subcategories:
+      mcu:
+        name: 单片机开发
+      rtos:
+        name: 实时操作系统

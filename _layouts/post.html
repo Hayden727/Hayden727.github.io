@@ -1,0 +1,157 @@
+---
+layout: default
+---
+
+<style>
+  .post-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .post-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .post-title {
+    color: #2d3748;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .post-meta {
+    color: #718096;
+    font-size: 0.9rem;
+  }
+
+  .post-content {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  .post-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 2rem 0;
+  }
+
+  .post-content h2 {
+    color: #2d3748;
+    font-size: 1.8rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e2e8f0;
+  }
+
+  .post-content h3 {
+    color: #2d3748;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .post-content p {
+    margin-bottom: 1.5rem;
+    color: #4a5568;
+  }
+
+  .post-content blockquote {
+    border-left: 4px solid #4299e1;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    background-color: #f7fafc;
+    border-radius: 4px;
+  }
+
+  .post-content code {
+    background-color: #f7fafc;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-family: monospace;
+  }
+
+  .post-content pre {
+    background-color: #f7fafc;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  .post-content ul,
+  .post-content ol {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+  }
+
+  .post-content li {
+    margin-bottom: 0.5rem;
+    color: #4a5568;
+  }
+
+  .post-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .post-tag {
+    background-color: #e2e8f0;
+    color: #4a5568;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .post-tag:hover {
+    background-color: #cbd5e0;
+    color: #2d3748;
+  }
+</style>
+
+<div class="post-container">
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+    <div class="post-meta">
+      {{ page.date | date: "%Y年%m月%d日" }}
+      {% if page.categories %}
+      · {{ site.blog_categories[page.categories.first].name }}
+      {% if page.subcategories %}
+      / {{ site.blog_categories[page.categories.first].subcategories[page.subcategories.first].name }}
+      {% endif %}
+      {% endif %}
+    </div>
+  </header>
+
+  <article class="post-content">
+    {{ content }}
+  </article>
+
+  <footer class="post-footer">
+    {% if page.tags %}
+    <div class="post-tags">
+      {% for tag in page.tags %}
+      <a href="/tags/{{ tag }}" class="post-tag">#{{ tag }}</a>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </footer>
+</div>

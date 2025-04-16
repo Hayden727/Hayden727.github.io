@@ -1,0 +1,220 @@
+---
+layout: default
+---
+
+<style>
+  .edit-profile-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-title {
+    color: #2d3748;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e2e8f0;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-label {
+    display: block;
+    color: #4a5568;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #2d3748;
+    transition: border-color 0.3s ease;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: #4299e1;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+  }
+
+  .form-textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+
+  .avatar-preview {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    object-fit: cover;
+  }
+
+  .avatar-input {
+    display: none;
+  }
+
+  .avatar-label {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #4299e1;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .avatar-label:hover {
+    background-color: #3182ce;
+  }
+
+  .submit-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #4299e1;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .submit-button:hover {
+    background-color: #3182ce;
+  }
+
+  .message {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+  }
+
+  .success {
+    background-color: #c6f6d5;
+    color: #2f855a;
+  }
+
+  .error {
+    background-color: #fed7d7;
+    color: #c53030;
+  }
+</style>
+
+<div class="edit-profile-container">
+  <h1 class="form-title">编辑个人资料</h1>
+
+  <form id="profile-form" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+      <img id="avatar-preview" src="{{ site.avatar }}" alt="头像预览" class="avatar-preview">
+      <br>
+      <label class="avatar-label">
+        更换头像
+        <input type="file" id="avatar" name="avatar" class="avatar-input" accept="image/*">
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="title">名称</label>
+      <input type="text" id="title" name="title" class="form-input" value="{{ site.title }}" required>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="subtitle">头衔</label>
+      <input type="text" id="subtitle" name="subtitle" class="form-input" value="{{ site.subtitle }}">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="description">个人简介</label>
+      <textarea id="description" name="description" class="form-input form-textarea">{{ site.description }}</textarea>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="location">位置</label>
+      <input type="text" id="location" name="location" class="form-input" value="{{ site.location }}">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="company">公司/组织</label>
+      <input type="text" id="company" name="company" class="form-input" value="{{ site.company }}">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="email">邮箱</label>
+      <input type="email" id="email" name="email" class="form-input" value="{{ site.email }}">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="github_username">GitHub 用户名</label>
+      <input type="text" id="github_username" name="github_username" class="form-input"
+        value="{{ site.github_username }}">
+    </div>
+
+    <button type="submit" class="submit-button">保存更改</button>
+  </form>
+
+  <div id="message" class="message" style="display: none;"></div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('profile-form');
+    const message = document.getElementById('message');
+    const avatarInput = document.getElementById('avatar');
+    const avatarPreview = document.getElementById('avatar-preview');
+
+    // 头像预览
+    avatarInput.addEventListener('change', function (e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          avatarPreview.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // 表单提交
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch('/api/update-profile', {
+          method: 'POST',
+          body: formData
+        });
+
+        const result = await response.json();
+
+        message.textContent = result.success ? '个人资料更新成功！' : '更新失败，请重试。';
+        message.className = `message ${result.success ? 'success' : 'error'}`;
+        message.style.display = 'block';
+
+        if (result.success) {
+          setTimeout(() => {
+            window.location.href = '/';
+          }, 2000);
+        }
+      } catch (error) {
+        message.textContent = '发生错误，请重试。';
+        message.className = 'message error';
+        message.style.display = 'block';
+      }
+    });
+  });
+</script>
