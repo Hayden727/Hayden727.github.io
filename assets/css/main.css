@@ -133,27 +133,48 @@ img {
   padding: var(--space-xl) 0 var(--space-lg);
 }
 
+.hero__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-md);
+}
+
+.hero__avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-border);
+}
+
 .hero__name {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.1;
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-xs);
+}
+
+.hero__name-zh {
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.05em;
 }
 
 .hero__role {
   font-family: var(--font-mono);
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: var(--color-text-secondary);
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-md);
 }
 
 .hero__bio {
-  font-size: 1rem;
+  font-size: 0.9375rem;
   line-height: 1.7;
   color: var(--color-text-secondary);
   max-width: 540px;
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-sm);
 }
 
 .hero__quote {
@@ -162,7 +183,7 @@ img {
   border-left: 2px solid var(--color-border);
   padding-left: var(--space-md);
   margin: var(--space-lg) 0;
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   line-height: 1.6;
 }
 
@@ -175,11 +196,50 @@ img {
 .hero__links a {
   color: var(--color-text-secondary);
   transition: color 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.hero__links a svg {
+  opacity: 0.6;
 }
 
 .hero__links a:hover {
   color: var(--color-accent);
   text-decoration: none;
+}
+
+.hero__links a:hover svg {
+  opacity: 1;
+}
+
+/* ===== About ===== */
+.about__text {
+  font-size: 0.9375rem;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+}
+
+/* ===== Tags ===== */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  padding: var(--space-xs) var(--space-sm);
+  transition: all 0.15s ease;
+}
+
+.tag:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
 }
 
 /* ===== Section ===== */
@@ -519,8 +579,13 @@ img {
     padding: 0 var(--space-md);
   }
 
+  .hero__avatar {
+    width: 64px;
+    height: 64px;
+  }
+
   .hero__name {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
 
   .article__title,

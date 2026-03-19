@@ -1,5 +1,6 @@
 # Site
-title: Hayden
+title: Hong Chenchen
+name_zh: 洪晨辰
 description: >-
   Sharing thoughts on compilers, embedded systems, and systems programming.
   Passionate about exploring new technologies in computer science.
@@ -11,7 +12,7 @@ emails:
 github_username: Hayden727
 
 # Personal
-location: Wuhan, China
+location: Shanghai, China
 company: NUDT
 avatar: /assets/images/avatar.jpg
 
