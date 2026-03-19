@@ -2,18 +2,18 @@
 title: Hong Chenchen
 name_zh: 洪晨辰
 description: >-
-  Sharing thoughts on compilers, embedded systems, and systems programming.
-  Passionate about exploring new technologies in computer science.
+  Focused on machine learning systems, LLM inference optimization,
+  and compiler infrastructure. Building tools that bridge the gap
+  between high-level ML frameworks and efficient hardware execution.
 
 # Contact
 emails:
-  - hongcc727@163.com
-  - haydenbrwon277@gmail.com
+  - hayden.cc@zohomail.com
 github_username: Hayden727
 
 # Personal
 location: Shanghai, China
-company: NUDT
+company: ByteDance
 avatar: /assets/images/avatar.jpg
 
 # Build
