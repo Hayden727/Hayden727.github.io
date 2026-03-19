@@ -1,39 +1,39 @@
 ---
 layout: post
-title: "实时操作系统概述"
+title: "Introduction to Real-Time Operating Systems"
 date: 2024-04-15
 categories: [embedded]
-subcategories: [rtos]
+excerpt: "An overview of RTOS fundamentals — what makes an OS 'real-time', key properties, and common implementations."
 ---
 
-# 实时操作系统概述
+# Introduction to Real-Time Operating Systems
 
-实时操作系统（RTOS）是一种特殊的操作系统，它的主要特点是能够在规定的时间内对外部事件做出响应。本文将介绍RTOS的基本概念和特性。
+A Real-Time Operating System (RTOS) is a specialized OS designed to respond to external events within strict timing constraints. Unlike general-purpose operating systems, an RTOS prioritizes deterministic response time over average throughput.
 
-## 什么是实时操作系统？
+## What Makes It "Real-Time"?
 
-实时操作系统是一种对时间要求严格的操作系统，它必须在指定的时间内完成特定的任务。与通用操作系统相比，RTOS更注重任务的响应时间而不是平均性能。
+The defining characteristic is **determinism** (确定性) — the system must guarantee that tasks complete within specified deadlines. Missing a deadline is considered a system failure.
 
-## RTOS的主要特性
+## Key Properties
 
-1. 确定性
-2. 可预测性
-3. 优先级调度
-4. 中断处理
-5. 任务管理
+1. **Determinism** — bounded worst-case execution time
+2. **Predictability** — consistent timing behavior
+3. **Priority-based scheduling** — higher-priority tasks preempt lower ones
+4. **Fast interrupt handling** — minimal interrupt latency
+5. **Task management** — lightweight context switching
 
-## 常见的RTOS
+## Common RTOS Implementations
 
-- FreeRTOS
-- RT-Thread
-- μC/OS
-- QNX
+- **FreeRTOS** — widely used in IoT and embedded devices
+- **RT-Thread** — popular in the Chinese embedded ecosystem (国内嵌入式生态)
+- **uC/OS** — classic educational and commercial RTOS
+- **QNX** — used in automotive and safety-critical systems
 
-## 应用场景
+## Application Domains
 
-- 工业控制
-- 医疗设备
-- 航空航天
-- 汽车电子
+- Industrial control systems
+- Medical devices
+- Aerospace and defense
+- Automotive electronics
 
-后续文章将详细介绍RTOS的各个组件和实现细节。 
+Future posts will explore RTOS internals — task scheduling, memory management, and inter-task communication.

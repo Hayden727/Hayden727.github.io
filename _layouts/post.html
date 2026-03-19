@@ -1,325 +1,36 @@
 ---
-layout: post_layout
+layout: default
 ---
 
-<style>
-  /* 背景图片样式 */
-  body {
-    background-image: url('/assets/images/wallhaven.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-  }
-
-  /* 返回按钮样式 */
-  .back-button {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 1000;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
-    border: none;
-    border-radius: 4px;
-    padding: 8px 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #121212;
-    text-decoration: none;
-    font-weight: 500;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-  }
-
-  .back-button:hover {
-    background: rgba(0, 102, 255, 0.1);
-    color: #0066FF;
-    transform: translateY(-2px);
-  }
-
-  .back-button svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  /* 文章页面整体布局 */
-  .post-container {
-    max-width: 900px;
-    margin: 40px auto 40px;
-    padding: 0 20px;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* 文章内容区域 */
-  .post-content {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 8px;
-    padding: 40px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  /* 文章标题 */
-  .post-title {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #121212;
-    margin-bottom: 16px;
-    line-height: 1.3;
-  }
-
-  /* 文章元信息 */
-  .post-meta {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    font-size: 14px;
-    color: #8590A6;
-    margin-bottom: 32px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid rgba(230, 230, 230, 0.7);
-  }
-
-  .post-category {
-    color: #0066FF;
-    text-decoration: none;
-  }
-
-  .post-category:hover {
-    text-decoration: underline;
-  }
-
-  /* 文章正文样式 */
-  .post-content h1,
-  .post-content h2,
-  .post-content h3,
-  .post-content h4,
-  .post-content h5,
-  .post-content h6 {
-    margin-top: 32px;
-    margin-bottom: 16px;
-    line-height: 1.4;
-    color: #121212;
-    font-weight: 600;
-  }
-
-  .post-content h1 {
-    font-size: 1.8em;
-    border-bottom: 1px solid rgba(230, 230, 230, 0.7);
-    padding-bottom: 0.3em;
-  }
-
-  .post-content h2 {
-    font-size: 1.5em;
-    border-bottom: 1px solid rgba(230, 230, 230, 0.7);
-    padding-bottom: 0.3em;
-  }
-
-  .post-content h3 {
-    font-size: 1.3em;
-  }
-
-  .post-content h4 {
-    font-size: 1.2em;
-  }
-
-  .post-content h5 {
-    font-size: 1.1em;
-  }
-
-  .post-content h6 {
-    font-size: 1em;
-    color: #4A5568;
-  }
-
-  .post-body {
-    font-size: 16px;
-    line-height: 1.8;
-    color: #2D3748;
-  }
-
-  .post-body>h1:first-child,
-  .post-body>h2:first-child,
-  .post-body>h3:first-child,
-  .post-body>h4:first-child,
-  .post-body>h5:first-child,
-  .post-body>h6:first-child {
-    margin-top: 0;
-  }
-
-  .post-body [id] {
-    scroll-margin-top: 80px;
-  }
-
-  .post-content p {
-    margin-bottom: 16px;
-    line-height: 1.8;
-    color: #2D3748;
-  }
-
-  .post-content img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin: 24px 0;
-  }
-
-  .post-content code {
-    background-color: #F7FAFC;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-family: 'Fira Code', monospace;
-    font-size: 0.9em;
-  }
-
-  .post-content pre {
-    background-color: #F7FAFC;
-    padding: 16px;
-    border-radius: 8px;
-    overflow-x: auto;
-    margin: 24px 0;
-  }
-
-  .post-content pre code {
-    background-color: transparent;
-    padding: 0;
-  }
-
-  .post-content blockquote {
-    border-left: 4px solid #0066FF;
-    padding-left: 16px;
-    margin: 24px 0;
-    color: #4A5568;
-  }
-
-  .post-content ul,
-  .post-content ol {
-    margin: 16px 0;
-    padding-left: 24px;
-  }
-
-  .post-content li {
-    margin-bottom: 8px;
-    line-height: 1.6;
-  }
-
-  /* 文章导航 */
-  .post-navigation {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 40px;
-    padding-top: 24px;
-    border-top: 1px solid rgba(230, 230, 230, 0.7);
-  }
-
-  .nav-link {
-    flex: 1;
-    padding: 16px;
-    text-decoration: none;
-    color: #2D3748;
-    transition: all 0.3s ease;
-  }
-
-  .nav-link:hover {
-    background-color: rgba(0, 102, 255, 0.1);
-    border-radius: 8px;
-  }
-
-  .nav-link-label {
-    font-size: 12px;
-    color: #8590A6;
-    margin-bottom: 4px;
-  }
-
-  .nav-link-title {
-    font-size: 14px;
-    font-weight: 500;
-  }
-
-  .nav-previous {
-    text-align: left;
-    margin-right: 8px;
-  }
-
-  .nav-next {
-    text-align: right;
-    margin-left: 8px;
-  }
-</style>
-
-<a href="/blog" class="back-button">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-    <path d="M19 12H5M12 19l-7-7 7-7" />
-  </svg>
-  <span data-en="Back to Blog" data-zh="返回博客">返回博客</span>
-</a>
-
-<article class="post-container">
-  <div class="post-content">
-    <h1 class="post-title" data-en="{{ page.title_en }}" data-zh="{{ page.title }}">{{ page.title }}</h1>
-    <div class="post-meta">
-      <span class="post-date">{{ page.date | date: "%Y年%m月%d日" }}</span>
-      {% if page.category %}
-      <a href="#" class="post-category" data-en="{{ page.category_en }}" data-zh="{{ page.category }}">{{ page.category
-        }}</a>
+<div class="container">
+  <article class="article">
+    <a href="{{ '/blog' | relative_url }}" class="article__back">&larr; Writing</a>
+    <h1 class="article__title">{{ page.title }}</h1>
+    <div class="article__meta">
+      <span>{{ page.date | date: "%Y.%m.%d" }}</span>
+      {% if page.categories.first %}
+      <span>{{ page.categories.first }}</span>
       {% endif %}
-      {% if page.subcategory %}
-      <span class="post-subcategory" data-en="{{ page.subcategory_en }}" data-zh="{{ page.subcategory }}">{{
-        page.subcategory }}</span>
-      {% endif %}
-      <span class="post-read-time" data-en="{{ content | number_of_words | divided_by: 350 | plus: 1 }} min read"
-        data-zh="{{ content | number_of_words | divided_by: 350 | plus: 1 }} 分钟阅读">
-        {{ content | number_of_words | divided_by: 350 | plus: 1 }} 分钟阅读
-      </span>
+      <span>{{ content | number_of_words | divided_by: 350 | plus: 1 }} min read</span>
     </div>
 
-    <div class="post-body">
+    <div class="prose">
       {{ content }}
     </div>
 
-    <nav class="post-navigation">
+    <nav class="post-nav">
       {% if page.previous %}
-      <a href="{{ page.previous.url }}" class="nav-link nav-previous">
-        <div class="nav-link-label" data-en="Previous Post" data-zh="上一篇">上一篇</div>
-        <div class="nav-link-title" data-en="{{ page.previous.title_en }}" data-zh="{{ page.previous.title }}">{{
-          page.previous.title }}</div>
+      <a href="{{ page.previous.url }}" class="post-nav__link">
+        <span class="post-nav__label">&larr; Previous</span>
+        <span class="post-nav__title">{{ page.previous.title }}</span>
       </a>
       {% endif %}
-
       {% if page.next %}
-      <a href="{{ page.next.url }}" class="nav-link nav-next">
-        <div class="nav-link-label" data-en="Next Post" data-zh="下一篇">下一篇</div>
-        <div class="nav-link-title" data-en="{{ page.next.title_en }}" data-zh="{{ page.next.title }}">{{
-          page.next.title }}</div>
+      <a href="{{ page.next.url }}" class="post-nav__link post-nav__next">
+        <span class="post-nav__label">Next &rarr;</span>
+        <span class="post-nav__title">{{ page.next.title }}</span>
       </a>
       {% endif %}
     </nav>
-  </div>
-</article>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    // 初始化语言
-    updatePostLanguage();
-
-    // 监听语言切换
-    const languageToggle = document.querySelector('.lang-switch');
-    if (languageToggle) {
-      languageToggle.addEventListener('click', updatePostLanguage);
-    }
-  });
-
-  function updatePostLanguage() {
-    const currentLang = document.documentElement.getAttribute('lang') || 'zh';
-    const elements = document.querySelectorAll('[data-en][data-zh]');
-
-    elements.forEach(element => {
-      element.textContent = element.getAttribute(`data-${currentLang}`);
-    });
-  }
-</script>
+  </article>
+</div>

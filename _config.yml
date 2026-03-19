@@ -1,53 +1,27 @@
-# 个人信息设置
-title: Hayden                    # 你的名字
-subtitle: NUDTer                 # 你的头衔/简短描述
-description: >-                  # 个人简介
-  分享技术、编程和研究的思考。
-  热爱探索新技术，专注于计算机科学领域。
+# Site
+title: Hayden
+description: >-
+  Sharing thoughts on compilers, embedded systems, and systems programming.
+  Passionate about exploring new technologies in computer science.
 
-# 联系方式
-emails: 
+# Contact
+emails:
   - hongcc727@163.com
   - haydenbrwon277@gmail.com
-github_username: Hayden727       # GitHub 用户名
+github_username: Hayden727
 
-# 个人详细信息
-location: Wuhan, China           # 所在地
-company: NUDT                    # 公司/组织
-avatar: /assets/images/avatar.jpg # 头像路径
+# Personal
+location: Wuhan, China
+company: NUDT
+avatar: /assets/images/avatar.jpg
 
-# 网站设置
+# Build
 baseurl: ""
 url: ""
 markdown: kramdown
 permalink: /:year/:month/:day/:title/
 
-# 主题设置
-theme_color: "#2c5282"          # 主题色
-background_color: "#f5f7fa"     # 背景色
-
-# 博客分类结构
-categories:
-  编译技术:
-    en: Compiler Technology
-    subcategories:
-      - name: LLVM
-        en: LLVM
-      - name: MLIR
-        en: MLIR
-      - name: 优化方法
-        en: Optimization Methods
-  嵌入式开发:
-    en: Embedded Development
-    subcategories:
-      - name: RTOS
-        en: RTOS
-      - name: MCU
-        en: MCU Development
-  日常:
-    en: Daily
-    subcategories: []
-
+# Collections
 collections:
   projects:
     output: true
