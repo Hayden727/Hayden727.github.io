@@ -2,33 +2,42 @@
 layout: default
 ---
 
-<div class="container">
-  <section class="hero">
-    <div class="hero__header">
-      <img src="{{ site.avatar }}" alt="{{ site.title }}" class="hero__avatar">
+<section class="motto" id="motto">
+  <div class="motto__content">
+    <p class="motto__text">"The best way to predict the future is to invent it."</p>
+    <span class="motto__author">— Alan Kay</span>
+  </div>
+  <a href="#main" class="motto__scroll" aria-label="Scroll down">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+    </svg>
+  </a>
+</section>
+
+<div class="container" id="main">
+  <section class="card profile-card fade-in">
+    <div class="profile-card__header">
+      <img src="{{ site.avatar }}" alt="{{ site.title }}" class="profile-card__avatar">
       <div>
-        <h1 class="hero__name">{{ site.title }}</h1>
-        <p class="hero__name-zh">{{ site.name_zh }}</p>
+        <h1 class="profile-card__name">{{ site.title }}</h1>
+        <p class="profile-card__name-zh">{{ site.name_zh }}</p>
+        <p class="profile-card__role">{{ site.company }} · {{ site.location }}</p>
       </div>
     </div>
-    <p class="hero__role">{{ site.company }} &middot; {{ site.location }}</p>
-    <p class="hero__bio">{{ site.description }}</p>
-    <blockquote class="hero__quote">
-      "The best way to predict the future is to invent it."
-    </blockquote>
-    <div class="hero__links">
+    <p class="profile-card__bio">{{ site.description }}</p>
+    <div class="profile-card__links">
       <a href="mailto:{{ site.emails[0] }}">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         Email
       </a>
       <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
         GitHub
       </a>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section fade-in">
     <h2 class="section__label">About</h2>
     <p class="about__text">
       I'm a systems programmer focused on compiler infrastructure and embedded systems.
@@ -37,7 +46,7 @@ layout: default
     </p>
   </section>
 
-  <section class="section">
+  <section class="section fade-in">
     <h2 class="section__label">Interests</h2>
     <div class="tags">
       <span class="tag">LLVM</span>
@@ -52,19 +61,21 @@ layout: default
     </div>
   </section>
 
-  <section class="section">
+  <section class="section fade-in">
     <h2 class="section__label">Projects</h2>
     {% for project in site.projects %}
-    <a href="{{ project.url | relative_url }}" class="project-item">
-      <span class="project-item__title">{{ project.title_en | default: project.title }}</span>
-      <span class="project-item__year">{{ project.date | date: "%Y" }}</span>
+    <a href="{{ project.url | relative_url }}" class="card project-card">
+      <div class="project-card__header">
+        <span class="project-card__title">{{ project.title_en | default: project.title }}</span>
+        <span class="project-card__year">{{ project.date | date: "%Y" }}</span>
+      </div>
+      <p class="project-card__desc">{{ project.excerpt_en | default: project.excerpt | strip_html | truncatewords: 25 }}</p>
     </a>
-    <p class="project-item__desc">{{ project.excerpt_en | default: project.excerpt | strip_html | truncatewords: 20 }}</p>
     {% endfor %}
   </section>
 
   {% if site.posts.size > 0 %}
-  <section class="section">
+  <section class="section fade-in">
     <h2 class="section__label">Writing</h2>
     {% for post in site.posts %}
     <div class="post-item">
