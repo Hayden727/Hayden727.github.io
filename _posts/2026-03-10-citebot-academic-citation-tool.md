@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "CiteBot: Automating Academic Citations with LLM + NLP Fusion"
-date: 2025-03-19
+date: 2026-03-10
 categories: [tools]
 excerpt: "Building an intelligent LaTeX citation assistant that fuses LLM semantic understanding with NLP term extraction to find and format academic references."
 ---

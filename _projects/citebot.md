@@ -2,7 +2,7 @@
 layout: project
 title: "CiteBot"
 title_en: "CiteBot — Intelligent Citation Assistant"
-date: 2025-03-01
+date: 2026-02-10
 status: "开发中"
 status_en: "Active"
 excerpt: "智能学术引用工具"

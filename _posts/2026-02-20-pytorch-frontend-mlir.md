@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "From PyTorch to MLIR: Building a TorchDynamo-Based Compiler Frontend"
-date: 2025-03-15
+date: 2026-02-20
 categories: [compiler]
 excerpt: "How we built a pure-Python frontend that captures PyTorch models via TorchDynamo and lowers them to MLIR for domain-specific compilation."
 ---

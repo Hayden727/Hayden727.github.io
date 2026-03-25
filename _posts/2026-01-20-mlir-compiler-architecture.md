@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Building a Production MLIR Compiler: Architecture and Design Decisions"
-date: 2025-03-01
+date: 2026-01-20
 categories: [compiler]
 excerpt: "Lessons learned from building a full MLIR-based compilation pipeline — from dialect design to pass orchestration."
 ---

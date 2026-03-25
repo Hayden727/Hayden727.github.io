@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Cost-Model-Driven Tiling in MLIR: Automating Vectorization Decisions"
-date: 2025-03-08
+date: 2026-02-05
 categories: [compiler]
 excerpt: "How to build a cost model that automatically selects optimal vectorization dimensions based on memory access patterns and instruction latencies."
 ---
