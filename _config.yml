@@ -2,18 +2,20 @@
 title: Hong Chenchen
 name_zh: 洪晨辰
 description: >-
-  Focused on machine learning systems, LLM inference optimization,
-  and compiler infrastructure. Building tools that bridge the gap
-  between high-level ML frameworks and efficient hardware execution.
+  LLM Infra engineer focused on inference acceleration, reinforcement learning,
+  and diffusion LLMs. Core committer of sglang-omni and contributor to SGLang.
 
 # Contact
 emails:
   - hayden.cc@zohomail.com
 github_username: Hayden727
+# Optional: your Zhihu profile URL (leave blank to hide the Zhihu link)
+zhihu_url: "https://www.zhihu.com/people/aurora-63-4-75"
 
 # Personal
-location: Shanghai, China
-company: ByteDance
+role: LLM Infra
+company: RedNote
+location: Hangzhou, China
 avatar: /assets/images/avatar.jpg
 
 # Build

@@ -55,29 +55,59 @@
       handleScroll();
     }
 
-    // ===== Fade-in on Scroll (Intersection Observer) =====
-    var fadeElements = document.querySelectorAll('.fade-in');
-    if (fadeElements.length > 0 && 'IntersectionObserver' in window) {
+    var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ===== Scroll Reveal (Intersection Observer) =====
+    var revealElements = document.querySelectorAll('.reveal, .stagger');
+    if (prefersReducedMotion) {
+      revealElements.forEach(function (el) {
+        el.classList.add('is-visible');
+      });
+    } else if (revealElements.length > 0 && 'IntersectionObserver' in window) {
       var observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+            entry.target.classList.add('is-visible');
             observer.unobserve(entry.target);
           }
         });
       }, {
-        threshold: 0.1,
+        threshold: 0.12,
         rootMargin: '0px 0px -40px 0px'
       });
 
-      fadeElements.forEach(function (el) {
+      revealElements.forEach(function (el) {
         observer.observe(el);
       });
     } else {
       // Fallback: show all elements if no IntersectionObserver
-      fadeElements.forEach(function (el) {
-        el.classList.add('visible');
+      revealElements.forEach(function (el) {
+        el.classList.add('is-visible');
       });
+    }
+
+    // ===== Motto Parallax / Fade on Scroll =====
+    var mottoContent = document.getElementById('motto-content');
+    var motto = document.getElementById('motto');
+    if (mottoContent && motto && !prefersReducedMotion) {
+      var ticking = false;
+      var updateMotto = function () {
+        var scrolled = window.scrollY;
+        var mottoHeight = motto.offsetHeight || window.innerHeight;
+        if (scrolled <= mottoHeight) {
+          var progress = scrolled / mottoHeight; // 0 -> 1 across the hero
+          mottoContent.style.transform = 'translateY(' + (scrolled * 0.35) + 'px)';
+          mottoContent.style.opacity = String(Math.max(0, 1 - progress * 1.25));
+        }
+        ticking = false;
+      };
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          window.requestAnimationFrame(updateMotto);
+          ticking = true;
+        }
+      }, { passive: true });
+      updateMotto();
     }
   });
 })();

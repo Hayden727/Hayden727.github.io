@@ -5,6 +5,19 @@ layout: default
 <div class="container">
   <article class="article">
     <a href="{{ '/blog' | relative_url }}" class="article__back">&larr; Writing</a>
+
+    {% if page.translation %}
+    <div class="lang-toggle" role="group" aria-label="Language">
+      {% if page.lang == 'zh' %}
+      <a class="lang-toggle__btn" href="{{ page.translation | relative_url }}">EN</a>
+      <span class="lang-toggle__btn is-active" aria-current="true">中文</span>
+      {% else %}
+      <span class="lang-toggle__btn is-active" aria-current="true">EN</span>
+      <a class="lang-toggle__btn" href="{{ page.translation | relative_url }}">中文</a>
+      {% endif %}
+    </div>
+    {% endif %}
+
     <h1 class="article__title">{{ page.title }}</h1>
     <div class="article__meta">
       <span>{{ page.date | date: "%Y.%m.%d" }}</span>
@@ -34,3 +47,18 @@ layout: default
     </nav>
   </article>
 </div>
+
+{% if page.math %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+  onload="renderMathInElement(document.querySelector('.prose'), {
+    delimiters: [
+      { left: '$$', right: '$$', display: true },
+      { left: '\\[', right: '\\]', display: true },
+      { left: '$', right: '$', display: false },
+      { left: '\\(', right: '\\)', display: false }
+    ],
+    throwOnError: false
+  });"></script>
+{% endif %}

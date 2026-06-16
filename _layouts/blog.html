@@ -7,14 +7,18 @@ layout: default
     <h1 class="page-header__title">Writing</h1>
   </div>
 
+  {% assign writing = site.posts | where_exp: "p", "p.lang != 'zh'" %}
   <section class="section">
-    {% for post in site.posts %}
+    {% for post in writing %}
     <div class="post-item">
       <span class="post-item__date">{{ post.date | date: "%Y.%m.%d" }}</span>
       {% if post.categories.first %}
       <span class="post-item__category">{{ post.categories.first }}</span>
       {% endif %}
       <a href="{{ post.url | relative_url }}" class="post-item__title">{{ post.title }}</a>
+      {% if post.translation %}
+      <span class="post-item__lang">EN · 中文</span>
+      {% endif %}
     </div>
     {% endfor %}
   </section>
