@@ -1,9 +1,10 @@
 ---
 layout: post
 title: "FDFO: First Done, First Out — Rethinking dLLM Inference Scheduling"
-date: 2026-06-16 07:02:00 +0800
+date: 2026-06-16 12:00:00 +0800
 categories: [systems]
 lang: en
+permalink: /2026/06/16/fdfo-dllm-scheduling/
 translation: /2026/06/16/fdfo-dllm-scheduling-zh/
 excerpt: "How a framework-level First-Done-First-Out execution mode lets diffusion-LLM serving stop waiting for the slowest request in a batch — released to SGLang in PRs #27551 and #27877."
 ---

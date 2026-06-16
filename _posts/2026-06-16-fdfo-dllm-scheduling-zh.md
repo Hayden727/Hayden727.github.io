@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "FDFO: 让 dLLM 推理从「整批等最慢」变成「谁先完成谁先走」"
-date: 2026-06-16 07:02:00 +0800
+date: 2026-06-16 12:00:00 +0800
 categories: [systems]
 lang: zh
 translation: /2026/06/16/fdfo-dllm-scheduling/
