@@ -6,8 +6,6 @@ categories: [compiler]
 excerpt: "Lessons learned from building a full MLIR-based compilation pipeline — from dialect design to pass orchestration."
 ---
 
-# Building a Production MLIR Compiler: Architecture and Design Decisions
-
 After spending months building a production-grade MLIR-based compiler for a domain-specific architecture, I want to share the architectural decisions and patterns that shaped the project. This post focuses on the high-level design — how to structure an MLIR compiler that goes from PyTorch models and C/C++ code all the way down to assembly.
 
 ## The Three-Layer Architecture

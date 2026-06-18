@@ -6,8 +6,6 @@ categories: [tools]
 excerpt: "Building an intelligent LaTeX citation assistant that fuses LLM semantic understanding with NLP term extraction to find and format academic references."
 ---
 
-# CiteBot: Automating Academic Citations with LLM + NLP Fusion
-
 Every researcher knows the pain: you've written a paper, and now you need to find 30-100 relevant references, format them as BibTeX, and insert `\cite{}` commands in the right places. It's tedious, error-prone, and takes hours.
 
 [CiteBot](https://github.com/Hayden727/CiteBot) automates this entire workflow. Give it a `.tex` file, and it produces a complete `references.bib` — with optional `\cite{}` insertion. The interesting engineering challenge is making the reference *selection* actually good.

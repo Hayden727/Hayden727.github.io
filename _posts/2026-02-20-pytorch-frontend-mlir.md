@@ -6,8 +6,6 @@ categories: [compiler]
 excerpt: "How we built a pure-Python frontend that captures PyTorch models via TorchDynamo and lowers them to MLIR for domain-specific compilation."
 ---
 
-# From PyTorch to MLIR: Building a TorchDynamo-Based Compiler Frontend
-
 Most ML compiler projects start with the backend — instruction selection, register allocation, code generation. But the frontend is equally critical: if you can't efficiently capture and lower PyTorch models, your compiler doesn't matter.
 
 We built a pure-Python frontend that integrates with PyTorch's `torch.compile` infrastructure via TorchDynamo. Here's the architecture, the tricky parts, and what we learned.

@@ -6,8 +6,6 @@ categories: [compiler]
 excerpt: "How to build a cost model that automatically selects optimal vectorization dimensions based on memory access patterns and instruction latencies."
 ---
 
-# Cost-Model-Driven Tiling in MLIR: Automating Vectorization Decisions
-
 One of the hardest problems in compiler optimization is tiling — deciding how to partition computation into chunks that fit hardware constraints. When you have vector registers, the question becomes: *which dimension should we vectorize?*
 
 Manual tuning is fragile. Change the kernel shape, element type, or memory layout, and your hand-tuned tiling breaks. We built a cost-model-driven framework that automatically makes these decisions. Here's how it works.
