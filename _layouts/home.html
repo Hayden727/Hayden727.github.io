@@ -26,7 +26,7 @@ layout: default
         <p class="profile-card__role">{{ site.role }} @ {{ site.company }} · {{ site.location }}</p>
       </div>
     </div>
-    <p class="profile-card__bio">LLM Infra engineer focused on inference acceleration, reinforcement learning, and diffusion LLMs. <strong>Core committer of SGLang-Omni and contributor to SGLang.</strong></p>
+    <p class="profile-card__bio">LLM Infra engineer focused on inference acceleration, reinforcement learning, and diffusion LLMs. <strong>Core committer of <a href="https://github.com/sgl-project/sglang-omni" target="_blank" rel="noopener">SGLang-Omni</a> and contributor to <a href="https://github.com/sgl-project/sglang" target="_blank" rel="noopener">SGLang</a>.</strong></p>
     <div class="profile-card__links">
       <a href="mailto:{{ site.emails[0] }}">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -48,26 +48,11 @@ layout: default
   <!-- ===== About ===== -->
   <section class="section reveal">
     <h2 class="section__label">About</h2>
-    <div class="about__text">
-      <p>
-        I work on machine learning systems &mdash; making large language models
-        serve faster and learn better. At <strong>RedNote</strong> I work on
-        <strong>LLM Infra</strong>, focused on inference acceleration and
-        reinforcement learning for large-scale model serving.
-      </p>
-      <p>
-        My work centers on
-        <a href="https://github.com/sgl-project/sglang-omni" target="_blank" rel="noopener">SGLang-Omni</a>,
-        a multi-stage pipeline framework for omni models, and
-        <a href="https://github.com/sgl-project/sglang" target="_blank" rel="noopener">SGLang</a>,
-        where I designed and implemented
-        <a href="{{ '/2026/06/16/fdfo-dllm-scheduling/' | relative_url }}">FDFO</a> &mdash;
-        a First-Done-First-Out scheduling mode for diffusion-LLM inference that lets a
-        batch stop waiting for its slowest request. Earlier I worked on MLIR/LLVM
-        compiler infrastructure and performance engineering, which still shapes how I
-        think about systems today.
-      </p>
-    </div>
+    <p class="about__text">
+      I work at the intersection of machine learning systems and large-scale model serving.
+      My focus areas include inference for multimodal and language models, and reinforcement
+      learning. Currently at RedNote, working on systems that make large-scale AI workloads run faster.
+    </p>
   </section>
 
   <!-- ===== Interests ===== -->
