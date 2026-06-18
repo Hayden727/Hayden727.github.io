@@ -86,19 +86,16 @@
       });
     }
 
-    // ===== Motto Parallax / Fade on Scroll =====
+    // ===== Motto: gentle drift + fade on scroll =====
     var mottoContent = document.getElementById('motto-content');
     var motto = document.getElementById('motto');
     if (mottoContent && motto && !prefersReducedMotion) {
       var ticking = false;
       var updateMotto = function () {
-        var scrolled = window.scrollY;
         var mottoHeight = motto.offsetHeight || window.innerHeight;
-        if (scrolled <= mottoHeight) {
-          var progress = scrolled / mottoHeight; // 0 -> 1 across the hero
-          mottoContent.style.transform = 'translateY(' + (scrolled * 0.35) + 'px)';
-          mottoContent.style.opacity = String(Math.max(0, 1 - progress * 1.25));
-        }
+        var progress = Math.min(1, window.scrollY / mottoHeight); // 0 -> 1 across the hero
+        mottoContent.style.transform = 'translateY(' + (progress * 24) + 'px)';
+        mottoContent.style.opacity = String(Math.max(0.15, 1 - progress * 0.9));
         ticking = false;
       };
       window.addEventListener('scroll', function () {
