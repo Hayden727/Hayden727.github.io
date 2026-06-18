@@ -342,7 +342,6 @@ img {
   font-size: 1rem;
   line-height: 1.85;
   color: var(--color-text-secondary);
-  max-width: 700px;
 }
 
 .about__text p + p {
