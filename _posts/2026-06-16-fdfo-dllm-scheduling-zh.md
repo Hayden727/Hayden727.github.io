@@ -9,8 +9,6 @@ permalink: /2026/06/16/fdfo-dllm-scheduling-zh/
 excerpt: "把 FDFO 抽象成 dLLM 调度器的框架级执行模式：完成即释放，不再整批等最慢。基于向 SGLang 提交的 #27551 与 #27877 两个 PR。"
 ---
 
-# FDFO: 让 dLLM 推理从「整批等最慢」变成「谁先完成谁先走」
-
 > 本文基于作者向 SGLang 提交的两个关于扩散语言模型调度器优化的 PR：[#27551](https://github.com/sgl-project/sglang/pull/27551) 和 [#27877](https://github.com/sgl-project/sglang/pull/27877)。前者把 FDFO 抽象成 dLLM 的框架级调度能力，后者进一步复用未完成 block 的 KV/req slot，减少 FDFO 轮次里的内存分配和调度往返开销。
 
 ## 先从几个基础概念说起

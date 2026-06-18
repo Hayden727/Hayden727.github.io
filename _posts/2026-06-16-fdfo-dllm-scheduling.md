@@ -9,8 +9,6 @@ translation: /2026/06/16/fdfo-dllm-scheduling-zh/
 excerpt: "How a framework-level First-Done-First-Out execution mode lets diffusion-LLM serving stop waiting for the slowest request in a batch — released to SGLang in PRs #27551 and #27877."
 ---
 
-# FDFO: First Done, First Out — Rethinking dLLM Inference Scheduling
-
 > This post is based on two PRs I contributed to SGLang for diffusion-LLM scheduler optimization: [#27551](https://github.com/sgl-project/sglang/pull/27551) and [#27877](https://github.com/sgl-project/sglang/pull/27877). The first lifts **FDFO** into a framework-level scheduling capability for dLLMs; the second reuses the KV/req slots of unfinished blocks in place, cutting the memory-allocation and scheduling round-trip overhead inside FDFO rounds.
 
 ## Some background first

@@ -288,6 +288,11 @@ img {
   margin-bottom: var(--space-md);
 }
 
+.profile-card__bio strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
 .profile-card__links {
   display: flex;
   gap: var(--space-lg);
